@@ -8,8 +8,8 @@ import java.net.Socket;
 import java.util.Map;
 
 public class TodoServer {
-    private static int port;
-    private static Todos todos;
+    private int port;
+    private Todos todos;
 
     public TodoServer(int port, Todos todos) {
         this.port = port;
@@ -27,7 +27,7 @@ public class TodoServer {
                  PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                  BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
                 String json = in.readLine();
-                Map map = gson.fromJson(json, Map.class);
+                Map <String> map = gson.fromJson(json, Map.class);
                 switch (map.get("type").toString()) {
                     case ("ADD"):
                         todos.addTask(map.get("task").toString());
